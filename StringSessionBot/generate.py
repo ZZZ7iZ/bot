@@ -22,7 +22,7 @@ from telethon.errors import (
 )
 
 ERROR_MESSAGE = "عفوًا! حدث استثناء! \n\n**خطأ** : {} " \
-            "\n\nيرجى الابلاغ عن المشكلة في @Tepthon_Help  إذا كان هناك خطأ " \
+            "\n\nيرجى الابلاغ عن المشكلة في @IIIlIIv  إذا كان هناك خطأ " \
             "معلومات حساسة وأنت إذا كنت تريد الإبلاغ عن هذا كـ " \
             "لم يتم تسجيل رسالة الخطأ هذه بواسطتنا!"
 
@@ -32,8 +32,8 @@ async def main(_, msg):
     await msg.reply(
         "اختــــــر احــــد الــــجلـــســــات الآتـــــيـة :-",
         reply_markup=InlineKeyboardMarkup([[
-            InlineKeyboardButton("بايــــــروجــــرام", callback_data="pyrogram"),
-            InlineKeyboardButton("تـــــلــــيــــثـــــون", callback_data="telethon")
+            InlineKeyboardButton("• بايــرجرام •", callback_data="pyrogram"),
+            InlineKeyboardButton("• تــرمكس •", callback_data="telethon")
         ]])
     )
 
@@ -75,7 +75,7 @@ async def generate_session(bot, msg, telethon=False):
         await msg.reply('`PHONE_NUMBER` غير صالح. يرجى البدء في إنشاء الجلسة مرة أخرى.', reply_markup=InlineKeyboardMarkup(Data.generate_button))
         return
     try:
-        phone_code_msg = await bot.ask(user_id, "يرجى التحقق من وجود OTP في حساب Telegram الرسمي. إذا حصلت عليه ، أرسل OTP هنا بعد قراءة التنسيق أدناه. \nIf OTP is `12345`, **من فضلك أرسلها كـ** `1 2 3 4 5`.", filters=filters.text, timeout=600)
+        phone_code_msg = await bot.ask(user_id, "يرجى التحقق من وجود OTP في حساب Telegram الرسمي. إذا حصلت عليه ، أرسل OTP هنا بعد قراءة التنسيق أدناه. \nIf OTP is 12345, **من فضلك أرسلها كـ** 1 2 3 4 5.", filters=filters.text, timeout=600)
         if await cancelled(api_id_msg):
             return
     except TimeoutError:
@@ -114,10 +114,10 @@ async def generate_session(bot, msg, telethon=False):
         string_session = client.session.save()
     else:
         string_session = await client.export_session_string()
-    text = "**{} استخراج الجلسة** \n\n`{}` \n\استخرجت من @Tepthon".format("TELETHON" if telethon else "PYROGRAM", string_session)
+    text = "**{} استخراج الجلسة** \n\n`{}` \n\استخرجت من @ZZZ7iZ".format("TELETHON" if telethon else "PYROGRAM", string_session)
     await client.send_message("me", text)
     await client.disconnect()
-    await phone_code_msg.reply("تم جلب استخراج الجلسة بنجاح {}. \n\nالرجاء تفقد الرسائل المحفوظة! \n\nمن @Tepthon".format("telethon" if telethon else "pyrogram"))
+    await phone_code_msg.reply("تم جلب استخراج الجلسة بنجاح {}. \n\nالرجاء تفقد الرسائل المحفوظة! \n\n `{}` ".format("telethon" if telethon else "pyrogram"))
 
 
 async def cancelled(msg):
